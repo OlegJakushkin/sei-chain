@@ -10,6 +10,7 @@ echo "Adding account $ACCOUNT_NAME"
 printf "12345678\n12345678\ny\n" | seid keys add $ACCOUNT_NAME >/dev/null 2>&1
 
 override_genesis() {
+  mkdir -p ~/.sei/config/ || true  # Allow mkdir to fail without affecting the script
   cat ~/.sei/config/genesis.json | jq "$1" > ~/.sei/config/tmp_genesis.json && mv ~/.sei/config/tmp_genesis.json ~/.sei/config/genesis.json;
 }
 
